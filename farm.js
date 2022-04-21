@@ -33,9 +33,10 @@ const getTotalYield = () => {
         { crop: corn, numCrops: 5 },
         { crop: pumpkin, numCrops: 2 },
     ];
-    
-    const mapCrops = crops.map(crop => crop.yield * crops.numCrops);
-    return mapCrops;
+
+    const multiplyCrops = crops.map(item => item.crop.yield * item.numCrops);
+    const reduceCrops = multiplyCrops.reduce((e, item) => e + item, 0);
+    return reduceCrops;
 };
 
 
