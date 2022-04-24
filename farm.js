@@ -2,22 +2,44 @@ const getYieldForPlant = (plant) => {
     const corn = {
         name: "corn",
         yield: 30,
+        factor: {
+            sun: {
+                low: -50,
+                medium: 0,
+                high: 50,
+            },
+        },
     };
-    return plant.yield;
-    
-}; 
 
+    const environmentFactors = {
+        sun: "low",
+    };
+
+    const environmentFactor = environmentFactors.sun;
+
+    if (environmentFactor === "low") {
+        return plant.yield * 50 / 100;
+    } else if (environmentFactor === "medium") {
+        return plant.yield * 100 / 100;
+    } else if (environmentFactor === "high") {
+        return plant.yield * 150 / 100;
+    }
+
+    // return plant.yield + plant.sun; <-- With no enviromental factors
+}; 
 
 const getYieldForCrop = () => {
     const corn = {
         name: "corn",
         yield: 3,
     };
+
     const input = {
         crop: corn,
         numCrops: 10,
     };
-    return input.crop.yield * input.numCrops;
+    
+    // return input.crop.yield * input.numCrops;
 };
 
 const getTotalYield = () => {
@@ -38,7 +60,6 @@ const getTotalYield = () => {
     const reduceCrops = multiplyCrops.reduce((e, item) => e + item, 0);
     return reduceCrops;
 };
-
 
 module.exports = {
     getYieldForPlant,
