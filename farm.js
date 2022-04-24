@@ -32,13 +32,34 @@ const getYieldForCrop = () => {
     const corn = {
         name: "corn",
         yield: 3,
+         factor: {
+            sun: {
+                low: -50,
+                medium: 0,
+                high: 50,
+            },
+        },
     };
 
     const input = {
         crop: corn,
         numCrops: 10,
     };
+
+    const environmentFactors = {
+        sun: "high",
+    };
+
+    const environmentFactor = environmentFactors.sun;
     
+    if (environmentFactor === "low") {
+        return (input.crop.yield * 50 / 100) * input.numCrops;
+    } else if (environmentFactor === "medium") {
+        return (input.crop.yield * 100 / 100) * input.numCrops;
+    } else if (environmentFactor === "high") {
+        return (input.crop.yield * 150 / 100) * input.numCrops;
+    }
+
     // return input.crop.yield * input.numCrops;
 };
 
