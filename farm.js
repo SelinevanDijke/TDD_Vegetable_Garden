@@ -63,24 +63,110 @@ const getYieldForCrop = () => {
     // return input.crop.yield * input.numCrops;
 };
 
-const getTotalYield = () => {
-    const corn = {
-            name: "corn",
-            yield: 3,
-        };
-    const pumpkin = {
-        name: "pumpkin",
-        yield: 4,
-    };
-    const crops = [
-        { crop: corn, numCrops: 5 },
-        { crop: pumpkin, numCrops: 2 },
-    ];
 
-    const multiplyCrops = crops.map(item => item.crop.yield * item.numCrops);
-    const reduceCrops = multiplyCrops.reduce((e, item) => e + item, 0);
-    return reduceCrops;
-};
+
+// const getTotalYield = () => {
+//     const corn = {
+//             name: "corn",
+//             yield: 3,
+//             sun: {
+//                 low: -50,
+//                 medium: 0,
+//                 high: 50,
+//             },
+//     };
+    
+//     const pumpkin = {
+//         name: "pumpkin",
+//         yield: 4,
+//         sun: {
+//             low: -50,
+//             medium: 0,
+//             high: 50,
+//         },
+//     };
+
+//     const crops = [
+//         { crop: corn, numCrops: 5 },
+//         { crop: pumpkin, numCrops: 2 },
+//     ];
+
+//     const environmentFactors = {
+//         sun: "low",
+//     };
+
+//     const multiplyCrops = crops.map(item => {
+
+//         const environmentFactor = environmentFactors.sun;
+
+//         if (environmentFactor === "low") {
+//             return (item.crop.yield * -item.crop.environment.low / 100) * item.numCrops;
+//         } else if (environmentFactor === "medium") {
+//             return (item.crop.yield * 100 / 100) * item.numCrops
+//         } else if (environmentFactor === "high") {
+//             return (item.crop.yield * (100 + item.crop.environment.high) / 100) * item.numCrops
+//         }
+//     });
+
+//     const reduceCrops = multiplyCrops.reduce((e, item) => e + item, 0);
+//     return reduceCrops;
+
+//     // const multiplyCrops = crops.map(item => item.crop.yield * item.numCrops);
+//     // const reduceCrops = multiplyCrops.reduce((e, item) => e + item, 0);
+//     // return reduceCrops;
+// };
+
+const getTotalYield = () => {
+     const corn = {
+            name: "corn",
+            yield: 30,
+            factor: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+            },
+        };
+
+        const pumpkin = {
+            name: "pumpkin",
+            yield: 30,
+            factor: {
+                sun: {
+                    low: -50,
+                    medium: 0,
+                    high: 50,
+                },
+            },
+        };
+
+        const environmentFactors = {
+            sun: "low",
+        };
+
+        const crops = [
+            { crop: corn, numCrops: 5 },
+            { crop: pumpkin, numCrops: 2 },
+        ];
+
+
+    const multiplicationProcess = crops.map(item => {
+        const environmentFactor = environmentFactors.sun;
+        if(environmentFactor === "low"){
+            return (item.crop.yield * -item.crop.factor.sun.low / 100) * item.numCrops
+        } else if(environmentFactor === "medium"){
+            return (item.crop.yield * 100 / 100) * item.numCrops
+        } else if(environmentFactor === "high"){
+            return (item.crop.yield * (100 + item.crop.factor.sun.high) / 100) * item.numCrops
+
+        }
+    });
+
+    const additionProcess = multiplicationProcess.reduce((acc, item) => acc + item, 0);
+    return additionProcess;
+}
+
 
 module.exports = {
     getYieldForPlant,
