@@ -137,9 +137,9 @@ describe("getProfitForCrop", () => {
     test("calculate the profit for a crop with environment factors ", () => {
         const corn = {
             name: "corn",
-            yield: 30, // <-- 3 kilogram -->
-            cost: 2, // 2 euro per plant 
-            salePrice: 5, // 5 euro sale price voor 1 kg
+            yield: 30, 
+            cost: 2, 
+            salePrice: 5,
             factor: {
                 sun: {
                     low: -50,
@@ -165,9 +165,9 @@ describe("getProfitForCrop", () => {
 describe("getTotalProfit", () => {
     const corn = {
         name: "corn",
-        yield: 30, // <-- 3 kilogram -->
-        cost: 2, // 2 euro per plant 
-        salePrice: 5, // 5 euro sale price voor 1 kg
+        yield: 30, 
+        cost: 2, 
+        salePrice: 5,
         factor: {
             sun: {
                 low: -50,
@@ -177,7 +177,6 @@ describe("getTotalProfit", () => {
         }
     };
 
-    
     const pumpkin = {
         name: "pumpkin",
         yield: 4,
@@ -195,10 +194,12 @@ describe("getTotalProfit", () => {
     const environmentFactors = {
         sun: "medium",
     };
+
     const crops = [
         { crop: corn, numCrops: 5 },
         { crop: pumpkin, numCrops: 2 },
     ];
+
     test("calculate the profit for multiple crops with environment factors", () => {
         expect(getTotalProfit(environmentFactors,{ crops })).toBe(782);
 
